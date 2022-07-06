@@ -1,20 +1,17 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
+import api from "@/utils/api";
+
+const word = ref("");
 
 onMounted(async () => {
-  console.log("mounted");
-
-  const res = await fetch("http://localhost:3030");
-  console.log(res);
-
-  const data = await res.json();
-  console.log(data);
+  word.value = await api.getRandomWordByLength(5);
 });
 </script>
 
 <template>
   <main>
-    <div>init</div>
+    <div>{{ word }}</div>
   </main>
 </template>
 
